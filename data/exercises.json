@@ -1,0 +1,156 @@
+[
+  {
+    "id": "ex_001",
+    "name": "Бег обычный",
+    "category": "беговые_упражнения",
+    "default_metric": {
+      "type": "duration",
+      "unit": "seconds",
+      "value": 600
+    },
+    "alternative_metrics": ["distance"],
+    "description": "Равномерный бег в среднем темпе. Может использоваться как основа для разминки, заминки или основной тренировки.",
+    "tags": ["cardio", "базовый"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_002",
+    "name": "Бег с высоким подниманием бедра",
+    "category": "беговые_упражнения",
+    "default_metric": {
+      "type": "duration",
+      "unit": "seconds",
+      "value": 60
+    },
+    "alternative_metrics": ["distance", "reps"],
+    "description": "Бег на месте или с продвижением с акцентом на активный подъём коленей до уровня таза.",
+    "tags": ["кардио", "координация", "СБУ"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_003",
+    "name": "Бег с захлёстыванием голени",
+    "category": "беговые_упражнения",
+    "default_metric": {
+      "type": "duration",
+      "unit": "seconds",
+      "value": 60
+    },
+    "alternative_metrics": ["distance", "reps"],
+    "description": "Бег на месте или с продвижением, пятки касаются ягодиц. Разрабатывает заднюю поверхность бедра.",
+    "tags": ["кардио", "координация", "СБУ"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_004",
+    "name": "Приставной шаг",
+    "category": "беговые_упражнения",
+    "default_metric": {
+      "type": "duration",
+      "unit": "seconds",
+      "value": 60
+    },
+    "alternative_metrics": ["distance", "reps"],
+    "description": "Боковой приставной шаг в полусогнутой стойке. Улучшает подвижность тазобедренных суставов.",
+    "tags": ["координация", "разминка", "СБУ"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_005",
+    "name": "Бег спиной вперёд",
+    "category": "беговые_упражнения",
+    "default_metric": {
+      "type": "duration",
+      "unit": "seconds",
+      "value": 45
+    },
+    "alternative_metrics": ["distance"],
+    "description": "Медленный бег спиной вперёд. Требует осторожности, развивает координацию и периферическое зрение.",
+    "tags": ["координация", "специфическое"],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "ex_006",
+    "name": "Выпады вперёд",
+    "category": "силовые",
+    "default_metric": {
+      "type": "reps",
+      "unit": "repetitions",
+      "value": 10
+    },
+    "alternative_metrics": ["duration"],
+    "description": "Поочерёдные выпады вперёд с сохранением вертикального положения корпуса. Нагрузка на квадрицепсы и ягодицы.",
+    "tags": ["ноги", "сила", "одностороннее"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_007",
+    "name": "Приседания",
+    "category": "силовые",
+    "default_metric": {
+      "type": "reps",
+      "unit": "repetitions",
+      "value": 15
+    },
+    "alternative_metrics": ["duration"],
+    "description": "Классические воздушные приседания. Спина прямая, колени по направлению носков, бёдра параллельно полу.",
+    "tags": ["ноги", "сила", "базовый"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_008",
+    "name": "Прыжки на месте",
+    "category": "силовые",
+    "default_metric": {
+      "type": "reps",
+      "unit": "repetitions",
+      "value": 20
+    },
+    "alternative_metrics": ["duration"],
+    "description": "Прыжки с отталкиванием двумя ногами, руки свободно. Проработка икр и укрепление стоп.",
+    "tags": ["плиометрика", "взрывная"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_009",
+    "name": "Выпады назад",
+    "category": "силовые",
+    "default_metric": {
+      "type": "reps",
+      "unit": "repetitions",
+      "value": 10
+    },
+    "alternative_metrics": ["duration"],
+    "description": "Поочерёдные выпады назад, меньше нагрузка на коленный сустав. Акцент на ягодицы.",
+    "tags": ["ноги", "сила", "одностороннее"],
+    "difficulty": "beginner"
+  },
+  {
+    "id": "ex_010",
+    "name": "Приседания с выпрыгиванием",
+    "category": "силовые",
+    "default_metric": {
+      "type": "reps",
+      "unit": "repetitions",
+      "value": 12
+    },
+    "alternative_metrics": ["duration"],
+    "description": "Приседание с последующим взрывным прыжком вверх. Развивает взрывную силу ног.",
+    "tags": ["плиометрика", "взрывная", "ноги"],
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "ex_011",
+    "name": "Ходьба (восстановительная)",
+    "category": "восстановление",
+    "default_metric": {
+      "type": "duration",
+      "unit": "seconds",
+      "value": 120
+    },
+    "alternative_metrics": ["distance"],
+    "description": "Спокойная ходьба для активного отдыха между интенсивными отрезками или в качестве заминки.",
+    "tags": ["отдых", "восстановление"],
+    "difficulty": "beginner"
+  }
+]
