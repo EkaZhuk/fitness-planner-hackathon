@@ -9,7 +9,7 @@ from pathlib import Path
 
 np.random.seed(42)
 START_DATE = datetime(2025, 1, 6)
-END_DATE = datetime(2025, 4, 1)
+END_DATE = datetime(2025, 10, 12)
 TRAINING_DAYS = [0, 2, 5]
 BASE_DISTANCE = 3.0
 WEEKLY_INCREASE = 0.4
