@@ -3,7 +3,7 @@ from database import Training, TrainingDataBase
 from datetime import date
 import uvicorn
 
-app = FastAPI(title='URL shortener')
+app = FastAPI(title='Fitness Planner')
 
 db = TrainingDataBase()
 
