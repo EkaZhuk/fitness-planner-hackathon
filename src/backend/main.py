@@ -3,6 +3,7 @@ from database import Goal, Training, TrainingDataBase
 from datetime import date
 import sys
 import uvicorn
+import json
 
 sys.path.append('src/ml')
 from predict import predict_finish_date
@@ -10,7 +11,8 @@ from predict import predict_finish_date
 app = FastAPI(title='Fitness Planner')
 
 db = TrainingDataBase()
-goal = Goal(goal_km=10, goal_deadline=date(2026, 6, 1))
+with open('data/goal.json', 'r') as f:
+    goal = json.load(f)
 
 @app.get('/')
 def home_page():
@@ -39,6 +41,8 @@ def get_progress():
 def get_progress(new_goal: Goal):
     global goal
     goal = new_goal
+    with open('data/goal.json', 'w') as f:
+        f.write(goal.model_dump_json())
     return goal
 
 @app.get('/predict')
