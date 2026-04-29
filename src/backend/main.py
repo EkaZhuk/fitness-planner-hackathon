@@ -35,6 +35,12 @@ def get_progress(days: int=30):
 def get_progress():
     return goal
 
+@app.post('/goal')
+def get_progress(new_goal: Goal):
+    global goal
+    goal = new_goal
+    return goal
+
 @app.get('/predict')
 def get_prediction():
     return predict_finish_date(goal.goal_km, str(goal.goal_deadline))

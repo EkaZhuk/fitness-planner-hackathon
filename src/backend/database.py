@@ -66,7 +66,7 @@ class TrainingDataBase:
                   FROM trainings
                   WHERE training_date > (SELECT date('now', '-{days} day'))
                   GROUP BY end_of_the_week)
-                  ORDER BY end_of_the_week;
+            ORDER BY end_of_the_week;
         ''')
         return [{'week_start': week[3],
                  'week_end': week[0],
