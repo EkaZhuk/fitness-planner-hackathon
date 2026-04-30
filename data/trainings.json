@@ -1,0 +1,176 @@
+[
+  {
+    "id": "w_speed_01",
+    "name": "Скоростная сессия СБУ",
+    "description": "Короткие мощные интервалы специальных беговых упражнений и взрывной силы. Развивает скоростную выносливость и технику бега.",
+    "category": "speed",
+    "estimated_duration_seconds": 1260,
+    "warmup": {
+      "exercise_id": "ex_001",
+      "metric": { "type": "duration", "unit": "seconds", "value": 300 }
+    },
+    "cooldown": {
+      "exercise_id": "ex_011",
+      "metric": { "type": "duration", "unit": "seconds", "value": 180 }
+    },
+    "blocks": [
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "duration", "unit": "seconds", "value": 20 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 40 }
+      },
+      {
+        "exercise_id": "ex_003",
+        "metric": { "type": "duration", "unit": "seconds", "value": 20 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 40 }
+      },
+      {
+        "exercise_id": "ex_010",
+        "metric": { "type": "reps", "unit": "repetitions", "value": 8 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 60 }
+      }
+    ],
+    "repeat": 3,
+    "rest_between_rounds": { "type": "duration", "unit": "seconds", "value": 60 },
+    "notes": "Выполнить 3 круга. Отдых между кругами 60 секунд. На выпрыгиваниях держать взрывной темп."
+  },
+  {
+    "id": "w_speed_02",
+    "name": "Интервалы на коротких дистанциях",
+    "description": "Скоростная работа на отрезках с активным восстановлением. Улучшает максимальную скорость и экономичность бега.",
+    "category": "speed",
+    "estimated_duration_seconds": 1100,
+    "warmup": {
+      "exercise_id": "ex_001",
+      "metric": { "type": "duration", "unit": "seconds", "value": 300 }
+    },
+    "cooldown": {
+      "exercise_id": "ex_011",
+      "metric": { "type": "duration", "unit": "seconds", "value": 180 }
+    },
+    "blocks": [
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "distance", "unit": "m", "value": 30 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 45 }
+      },
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "distance", "unit": "m", "value": 30 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 45 }
+      },
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "distance", "unit": "m", "value": 30 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 45 }
+      },
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "distance", "unit": "m", "value": 30 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 45 }
+      },
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "distance", "unit": "m", "value": 30 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 45 }
+      },
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "distance", "unit": "m", "value": 30 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 45 }
+      },
+      {
+        "exercise_id": "ex_008",
+        "metric": { "type": "duration", "unit": "seconds", "value": 20 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 40 }
+      },
+      {
+        "exercise_id": "ex_008",
+        "metric": { "type": "duration", "unit": "seconds", "value": 20 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 40 }
+      },
+      {
+        "exercise_id": "ex_008",
+        "metric": { "type": "duration", "unit": "seconds", "value": 20 },
+        "rest_after": null
+      }
+    ],
+    "repeat": 1,
+    "notes": "6 отрезков бега с высоким подниманием бедра по 30 м, восстанавливаться лёгкой ходьбой (45 сек). Затем 3 подхода прыжков на месте с коротким отдыхом."
+  },
+  {
+    "id": "w_endurance_01",
+    "name": "Длительная выносливость с координацией",
+    "description": "Равномерная длительная работа с включением координационных блоков. Укрепляет сердечно-сосудистую систему и улучшает владение телом.",
+    "category": "endurance",
+    "estimated_duration_seconds": 1580,
+    "warmup": {
+      "exercise_id": "ex_001",
+      "metric": { "type": "duration", "unit": "seconds", "value": 600 }
+    },
+    "cooldown": {
+      "exercise_id": "ex_011",
+      "metric": { "type": "duration", "unit": "seconds", "value": 300 }
+    },
+    "blocks": [
+      {
+        "exercise_id": "ex_004",
+        "metric": { "type": "duration", "unit": "seconds", "value": 120 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 30 }
+      },
+      {
+        "exercise_id": "ex_005",
+        "metric": { "type": "duration", "unit": "seconds", "value": 60 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 30 }
+      },
+      {
+        "exercise_id": "ex_007",
+        "metric": { "type": "reps", "unit": "repetitions", "value": 20 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 30 }
+      }
+    ],
+    "repeat": 2,
+    "rest_between_rounds": { "type": "duration", "unit": "seconds", "value": 60 },
+    "notes": "После 10-минутной разминки выполни 2 круга координационно-силового блока. Темп спокойный, следи за техникой."
+  },
+  {
+    "id": "w_endurance_02",
+    "name": "Круговая выносливость с силовым акцентом",
+    "description": "Равномерная круговая тренировка, комбинирующая беговые и силовые упражнения с короткими интервалами отдыха. Повышает общую физическую подготовку.",
+    "category": "endurance",
+    "estimated_duration_seconds": 1440,
+    "warmup": {
+      "exercise_id": "ex_001",
+      "metric": { "type": "duration", "unit": "seconds", "value": 300 }
+    },
+    "cooldown": {
+      "exercise_id": "ex_011",
+      "metric": { "type": "duration", "unit": "seconds", "value": 240 }
+    },
+    "blocks": [
+      {
+        "exercise_id": "ex_002",
+        "metric": { "type": "duration", "unit": "seconds", "value": 45 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 15 }
+      },
+      {
+        "exercise_id": "ex_006",
+        "metric": { "type": "duration", "unit": "seconds", "value": 45 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 15 }
+      },
+      {
+        "exercise_id": "ex_009",
+        "metric": { "type": "duration", "unit": "seconds", "value": 45 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 15 }
+      },
+      {
+        "exercise_id": "ex_008",
+        "metric": { "type": "duration", "unit": "seconds", "value": 30 },
+        "rest_after": { "type": "duration", "unit": "seconds", "value": 30 }
+      }
+    ],
+    "repeat": 3,
+    "rest_between_rounds": { "type": "duration", "unit": "seconds", "value": 90 },
+    "notes": "Все силовые упражнения выполняются временными интервалами – держи стабильный темп. Прыжки делай мягко, сохраняя упругость стоп."
+  }
+]

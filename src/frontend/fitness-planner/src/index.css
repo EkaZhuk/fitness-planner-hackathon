@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Grotesk", ui-monospace, SFMono-Regular, monospace;
+
+  --color-primary: #FF5F00;
+  --color-background: #0A0A0A;
+  --color-surface: #131313;
+  --color-surface-lvl1: #161616;
+  --color-surface-lvl2: #222222;
+  --color-surface-border: #222222;
+
+  --radius-soft: 4px;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white font-sans;
+  }
+}
