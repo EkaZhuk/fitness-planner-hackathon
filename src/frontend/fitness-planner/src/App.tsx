@@ -1,21 +1,58 @@
-import React, { useState } from 'react';
+// App.tsx (обновленная версия с авторизацией)
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Header } from './components/Navigation/Header';
 import { NavBar } from './components/Navigation/NavBar';
 import { SubscriptionScreen } from './components/Subscription/SubscriptionScreen';
+import { LoginScreen } from './pages/LoginScreen/LoginScreen';
+import { RegisterScreen } from './pages/RegisterScreen/RegisterScreen';
 import { RunScreen } from './pages/RunScreen/RunScreen';
 import { ScheduleScreen } from './pages/ScheduleScreen/ScheduleScreen';
 import { CoachScreen } from './pages/CoachScreen/CoachScreen';
 import { ProfileScreen } from './pages/ProfileScreen/ProfileScreen';
 import { ScreenType } from './types';
+import { authService } from './services/auth.service';
 
 export default function App() {
     const [currentScreen, setCurrentScreen] = useState<ScreenType>('run');
     const [showSubscription, setShowSubscription] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [showLogin, setShowLogin] = useState(true); // true: login, false: register
+
+    useEffect(() => {
+        // Проверяем токен при загрузке приложения
+        const authenticated = authService.isAuthenticated();
+        setIsAuthenticated(authenticated);
+    }, []);
+
+    const handleLogout = () => {
+        authService.logout();
+        setIsAuthenticated(false);
+    };
+
+    if (!isAuthenticated) {
+        return (
+            <AnimatePresence mode="wait">
+                {showLogin ? (
+                    <LoginScreen
+                        key="login"
+                        onLoginSuccess={() => setIsAuthenticated(true)}
+                        onSwitchToRegister={() => setShowLogin(false)}
+                    />
+                ) : (
+                    <RegisterScreen
+                        key="register"
+                        onRegisterSuccess={() => setIsAuthenticated(true)}
+                        onSwitchToLogin={() => setShowLogin(true)}
+                    />
+                )}
+            </AnimatePresence>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-background selection:bg-primary selection:text-black">
-            <Header />
+            <Header onLogout={handleLogout} />
 
             <main className="max-w-md mx-auto">
                 <AnimatePresence mode="wait">
