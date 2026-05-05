@@ -18,7 +18,7 @@ export interface AuthResponse {
 
 class AuthService {
     private static instance: AuthService;
-    private readonly API_URL = 'http://82.146.61.208:8000'; // FastAPI порт 8000
+    private readonly API_URL = 'http://127.0.0.1:8000'; // FastAPI порт 8000
 
     private constructor() {}
 
@@ -103,9 +103,12 @@ class AuthService {
             const response = await fetch(`${this.API_URL}/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: formData,
+                body: JSON.stringify({  // ← Преобразуем в JSON
+                    username: credentials.login,
+                    password: credentials.password
+                }),
                 credentials: 'include', // Важно для получения cookies
             });
 
