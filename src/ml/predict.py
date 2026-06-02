@@ -1,6 +1,7 @@
 """
 Функции для прогнозирования прогресса бегуна.
 С корректирующими коэффициентами на антропометрию.
+Поддержка тейперинга для марафонской подготовки.
 """
 import pickle
 import warnings
@@ -34,7 +35,7 @@ def predict_finish_date(target_distance: float, target_date_str: str,
         }
 
     target_date = datetime.strptime(target_date_str, '%Y-%m-%d')
-    
+
     # Проверка: дата забега должна быть позже даты старта тренировок
     if target_date < start_date:
         return {
@@ -42,7 +43,7 @@ def predict_finish_date(target_distance: float, target_date_str: str,
             'message': 'Дата забега раньше начала тренировок — проверьте данные',
             'status': 'Некорректный ввод'
         }
-    
+
     # Предупреждение о слишком большой цели
     if target_distance > 100:
         return {
@@ -157,6 +158,44 @@ def safe_prediction(target_distance, target_date_str, current_date_str, user_pro
     return result
 
 
+def apply_tapering(predicted_distance: float, weeks_left: int) -> float:
+    """
+    Корректирует прогноз с учётом тейперинга (снижение нагрузки перед забегом).
+    Основано на рекомендациях: за 2-3 недели до старта объём снижается на 20-40%.
+    """
+    if weeks_left <= 1:
+        # Последняя неделя перед забегом: снижение на 40%
+        return round(predicted_distance * 0.6, 1)
+    elif weeks_left <= 2:
+        # Две недели до забега: снижение на 20%
+        return round(predicted_distance * 0.8, 1)
+    elif weeks_left <= 3:
+        # Три недели до забега: снижение на 10%
+        return round(predicted_distance * 0.9, 1)
+    else:
+        # Базовая фаза: без изменений
+        return predicted_distance
+
+
+def safe_prediction_with_tapering(target_distance, target_date_str, current_date_str, user_profile=None):
+    """
+    Безопасный прогноз с тейперингом для марафонской подготовки.
+    """
+    result = safe_prediction(target_distance, target_date_str, current_date_str, user_profile)
+    weeks_left = result.get('weeks_left', 12)
+
+    # Применяем тейперинг к прогнозу
+    tapered = apply_tapering(result['predicted_km_per_training'], weeks_left)
+    result['predicted_km_per_training_tapered'] = tapered
+
+    if weeks_left <= 3:
+        result['warning'].append(
+            f'До забега {weeks_left} нед. Рекомендуется снизить нагрузку до {tapered} км (тейперинг)'
+        )
+
+    return result
+
+
 if __name__ == '__main__':
     # Тестовый запуск
     print('Базовый прогноз:')
@@ -176,4 +215,9 @@ if __name__ == '__main__':
     }
     safe = safe_prediction(10, '2025-07-01', '2025-04-06', user)
     for key, value in safe.items():
+        print(f'   {key}: {value}')
+
+    print('\nС тейперингом (за 2 недели до забега):')
+    tapered_result = safe_prediction_with_tapering(10, '2025-06-15', '2025-06-01', user)
+    for key, value in tapered_result.items():
         print(f'   {key}: {value}')
