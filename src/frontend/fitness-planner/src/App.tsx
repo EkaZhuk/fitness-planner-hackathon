@@ -12,23 +12,84 @@ import { CoachScreen } from './pages/CoachScreen/CoachScreen';
 import { ProfileScreen } from './pages/ProfileScreen/ProfileScreen';
 import { ScreenType } from './types';
 import { authService } from './services/auth.service';
+import { GoalScreen } from './pages/GoalScreen/GoalScreen'; // Импортируем GoalScreen
+import { apiService } from './services/api.service';
+import { ScheduleSetupScreen } from './pages/ScheduleSetupScreen/ScheduleSetupScreen';
+
+
 
 export default function App() {
     const [currentScreen, setCurrentScreen] = useState<ScreenType>('run');
     const [showSubscription, setShowSubscription] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [showLogin, setShowLogin] = useState(true); // true: login, false: register
+    const [showGoalScreen, setShowGoalScreen] = useState(false); // Новое состояние
+    const [isCheckingGoal, setIsCheckingGoal] = useState(true);
+    const [showScheduleSetup, setShowScheduleSetup] = useState(false);
 
     useEffect(() => {
-        // Проверяем токен при загрузке приложения
-        const authenticated = authService.isAuthenticated();
-        setIsAuthenticated(authenticated);
+        const checkAuthAndGoal = async () => {
+            const authenticated = authService.isAuthenticated();
+            setIsAuthenticated(authenticated);
+
+            if (authenticated) {
+                // Проверяем, есть ли уже цель у пользователя
+                try {
+                    const goal = await apiService.getGoal();
+                    if (!goal) {
+                        // Если цели нет, показываем экран цели
+                        setShowGoalScreen(true);
+                    }
+                } catch (error) {
+                    console.error('Error checking goal:', error);
+                }
+            }
+            setIsCheckingGoal(false);
+        };
+
+        checkAuthAndGoal();
     }, []);
+
 
     const handleLogout = () => {
         authService.logout();
+        localStorage.clear();
         setIsAuthenticated(false);
     };
+
+
+    const handleRegisterSuccess = () => {
+        setIsAuthenticated(true);
+        // После регистрации сразу показываем экран цели
+        setTimeout(() => {
+            setShowGoalScreen(true);
+        }, 1000);
+        setShowGoalScreen(true);
+
+    };
+
+
+
+    const handleGoalSaved = () => {
+        // Скрываем экран цели после сохранения
+        setShowGoalScreen(false);
+        setCurrentScreen('run');
+    };
+
+    const handleScheduleSetupComplete = () => {
+        setShowScheduleSetup(false);
+        setCurrentScreen('schedule');
+    };
+
+
+    // Проверка цели
+    if (isCheckingGoal) {
+        return (
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <div className="text-center">Загрузка...</div>
+            </div>
+        );
+    }
 
     if (!isAuthenticated) {
         return (
@@ -42,11 +103,33 @@ export default function App() {
                 ) : (
                     <RegisterScreen
                         key="register"
-                        onRegisterSuccess={() => setIsAuthenticated(true)}
+                        onRegisterSuccess={() => {
+                            setIsAuthenticated(true);
+                            setTimeout(() => {
+                                setShowGoalScreen(true);
+                            }, 1500);
+                            setShowGoalScreen(true);
+                        }}
                         onSwitchToLogin={() => setShowLogin(true)}
                     />
                 )}
             </AnimatePresence>
+        );
+    }
+
+    if (showGoalScreen) {
+        return (
+            <div className="min-h-screen bg-background">
+                <GoalScreen onGoalSaved={handleGoalSaved} />
+            </div>
+        );
+    }
+
+    if (showScheduleSetup) {
+        return (
+            <div className="min-h-screen bg-background">
+                <ScheduleSetupScreen onClose={handleScheduleSetupComplete} />
+            </div>
         );
     }
 
@@ -73,8 +156,12 @@ export default function App() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                         >
-                            <ScheduleScreen />
+                            <ScheduleScreen onOpenSetup={() => setShowScheduleSetup(true)}/>
                         </motion.div>
+                    )}
+                    {/* Модалка вне motion.div, чтобы не наследовать анимации */}
+                    {showScheduleSetup && (
+                        <ScheduleSetupScreen onClose={() => setShowScheduleSetup(false)} />
                     )}
                     {currentScreen === 'coach' && (
                         <motion.div
@@ -94,6 +181,7 @@ export default function App() {
                         >
                             <ProfileScreen onUpgradePress={() => setShowSubscription(true)} />
                         </motion.div>
+
                     )}
                 </AnimatePresence>
             </main>

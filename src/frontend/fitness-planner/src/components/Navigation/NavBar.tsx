@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Dumbbell, Calendar, MessageSquare, User } from 'lucide-react';
+import { Dumbbell, Calendar, MessageSquare, User, Footprints } from 'lucide-react';
 import { ScreenType } from '../../types';
 
 interface NavBarProps {
@@ -10,7 +10,7 @@ interface NavBarProps {
 
 export const NavBar: React.FC<NavBarProps> = ({ active, onChange }) => {
     const items = [
-        { id: 'run', label: 'БЕГ', icon: Dumbbell },
+        { id: 'run', label: 'БЕГ', icon: Footprints },
         { id: 'schedule', label: 'РАСПИСАНИЕ', icon: Calendar },
         { id: 'coach', label: 'AI ТРЕНЕР', icon: MessageSquare },
         { id: 'profile', label: 'ПРОФИЛЬ', icon: User },

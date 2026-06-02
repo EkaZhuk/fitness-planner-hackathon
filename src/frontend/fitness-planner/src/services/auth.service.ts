@@ -4,6 +4,11 @@ export interface User {
     hashed_password: string;
     email?: string;
     full_name?: string;
+    gender: string;
+    age: number;
+    weight_kg: number;
+    height_cm: number;
+    level: string;
 }
 
 export interface UserLogin {
@@ -18,7 +23,9 @@ export interface AuthResponse {
 
 class AuthService {
     private static instance: AuthService;
-    private readonly API_URL = 'http://127.0.0.1:8000'; // FastAPI порт 8000
+    // private readonly API_URL = 'http://82.146.61.208:8000'; // FastAPI порт 8000
+    private readonly API_URL = 'http://localhost:8000'; // FastAPI порт 8000
+
 
     private constructor() {}
 
@@ -65,7 +72,16 @@ class AuthService {
     }
 
     // Регистрация
-    async register(credentials: { name: string; login: string; password: string }): Promise<AuthResponse> {
+    async register(credentials: {
+        password: string;
+        gender: "male" | "female" | "other";
+        weight_kg: number;
+        level: "beginner" | "intermediate" | "advanced";
+        height_cm: number;
+        name: string;
+        email: string;
+        age: number
+    }): Promise<AuthResponse> {
         try {
             const response = await fetch(`${this.API_URL}/signup`, {
                 method: 'POST',
@@ -73,10 +89,15 @@ class AuthService {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: credentials.login,
+                    username: credentials.name,
                     hashed_password: credentials.password,
                     full_name: credentials.name,
-                    email: `${credentials.login}@example.com` // временный email
+                    email: credentials.email,
+                    gender: credentials.gender,
+                    age: credentials.age,
+                    weight_kg: credentials.weight_kg,
+                    height_cm: credentials.height_cm,
+                    level: credentials.level
                 }),
             });
 
@@ -86,7 +107,14 @@ class AuthService {
             }
 
             // После регистрации сразу логиним
-            return this.login({ login: credentials.login, password: credentials.password });
+            // 2. После успешной регистрации - логинимся
+            const loginResponse = await this.login({
+                login: credentials.name,
+                password: credentials.password
+            });
+
+            return loginResponse;
+
         } catch (error) {
             console.error('Registration error:', error);
             throw error;
@@ -96,10 +124,6 @@ class AuthService {
     // Логин
     async login(credentials: { login: string; password: string }): Promise<AuthResponse> {
         try {
-            const formData = new URLSearchParams();
-            formData.append('username', credentials.login);
-            formData.append('password', credentials.password);
-
             const response = await fetch(`${this.API_URL}/login`, {
                 method: 'POST',
                 headers: {

@@ -15,10 +15,10 @@ export const Header: React.FC<HeaderProps> = ({ onLogout }) => (
             </h1>
         </div>
         <div className="flex items-center gap-4">
-            <button className="text-white relative">
-                <Bell size={20} />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
-            </button>
+            {/*<button className="text-white relative">*/}
+            {/*    <Bell size={20} />*/}
+            {/*    <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />*/}
+            {/*</button>*/}
             {onLogout && (
                 <button onClick={onLogout} className="text-white/40 hover:text-white transition-colors">
                     <LogOut size={20} />

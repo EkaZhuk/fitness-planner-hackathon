@@ -147,33 +147,16 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onSwit
                         </div>
                     </div>
 
-                    {/* Альтернативные способы входа */}
-                    <div className="space-y-3">
-                        <button
-                            onClick={handleBiometricAuth}
-                            className="w-full bg-surface-lvl1 border border-surface-border py-3 rounded-soft flex items-center justify-center gap-3 hover:bg-surface-lvl2 transition-colors group"
-                        >
-                            <Fingerprint size={18} className="text-primary group-hover:scale-110 transition-transform" />
-                            <span className="text-xs font-black uppercase tracking-widest">Вход по отпечатку</span>
-                        </button>
-
-                        <button
-                            className="w-full bg-surface-lvl1 border border-surface-border py-3 rounded-soft flex items-center justify-center gap-3 hover:bg-surface-lvl2 transition-colors group"
-                        >
-                            <Apple size={18} className="text-white/60 group-hover:scale-110 transition-transform" />
-                            <span className="text-xs font-black uppercase tracking-widest">Продолжить с Apple</span>
-                        </button>
-                    </div>
 
                     {/* Ссылка на регистрацию */}
                     <div className="mt-8 text-center">
                         <p className="text-white/40 text-xs font-mono">
-                            Нет аккаунта?{' '}
+                            Нет аккаунта?        <br />
+
                             <button
                                 onClick={onSwitchToRegister}
                                 className="text-primary hover:text-primary/80 font-black uppercase tracking-wider"
-                            >
-                                Регистрация
+                            > Регистрация
                             </button>
                         </p>
                     </div>
